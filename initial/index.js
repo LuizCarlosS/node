@@ -1,11 +1,13 @@
-import http from 'http';
+import { config } from 'dotenv';
 import fs from 'fs';
 import { readdir } from 'fs/promises';
+import http from 'http';
 import path from 'path';
+import { URL, fileURLToPath } from 'url';
 import { createLink } from './utils.js';
-import { URL } from 'url';
-import { fileURLToPath } from 'url';
 
+config()
+const port = process.env.PORT || 3333;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -59,4 +61,4 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(3333);
+server.listen(port);
